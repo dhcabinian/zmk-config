@@ -23,8 +23,8 @@
                 &kp TAB   &kp Q  &kp W    &kp E     &kp R     &kp T               &kp Y    &kp U    &kp I     &kp O    &kp P    &kp MINUS
                 &kp LSHFT &kp A  &kp S    &kp D     &kp F     &kp G               &kp H    &kp J    &kp K     &kp L    &kp SEMI &kp SQT
                 &kp LCTRL &kp Z  &kp X    &kp C     &kp V     &kp B               &kp N    &kp M    &kp COMMA &kp DOT  &kp FSLH &kp BSLH
-                                 &tog LWR &tog RSE                                         &kp LBKT &kp RBKT
-                                          &kp LSHFT &kp SPACE                     &kp RET  &kp BSPC
+                                 &tog LWR &tog RSE                                                  &kp LBKT  &kp RBKT
+                                          &kp LSHFT &kp SPACE                              &kp RET  &kp BSPC
                                                     &kp LCMD  &kp ESC             &kp UP   &kp RIGHT
                                                     &sl LWR   &kp LALT            &kp LEFT &kp DOWN
             >;
@@ -46,8 +46,8 @@
         raise_layer {
             bindings = <
                 &trans      &bt BT_SEL 0 &bt BT_SEL 1      &bt BT_SEL 2 &bt BT_SEL 3 &trans                &trans          &trans          &trans          &trans          &trans &trans
-                &bt BT_CLR  &bt BT_NXT   &bt BT_PRV        &out OUT_BLE &out OUT_TOG &out OUT_USB          &rgb_ug RGB_SAI &rgb_ug RGB_SAD &rgb_ug RGB_HUI &rgb_ug RGB_HUD &trans &trans
-                &reset      &bootloader  &ext_power EP_TOG &trans       &trans       &trans                &rgb_ug RGB_BRI &rgb_ug RGB_BRD &rgb_ug RGB_TOG &trans          &trans &trans
+                &bt BT_CLR  &bt BT_NXT   &bt BT_PRV        &out OUT_BLE &out OUT_TOG &out OUT_USB          &rgb_ug RGB_BRI &rgb_ug RGB_BRD &rgb_ug RGB_TOG &trans          &trans &trans
+                &reset      &bootloader  &ext_power EP_TOG &trans       &trans       &trans                &rgb_ug RGB_SAI &rgb_ug RGB_SAD &rgb_ug RGB_HUI &rgb_ug RGB_HUD &trans &trans
                 &trans      &trans       &trans            &trans       &trans       &trans                &rgb_ug RGB_EFF &rgb_ug RGB_EFR &rgb_ug RGB_SPI &rgb_ug RGB_SPD &trans &trans
                                          &trans            &trans                                                                          &trans          &trans
                                                            &trans       &trans                                             &trans          &trans
