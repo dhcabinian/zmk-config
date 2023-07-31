@@ -1,17 +1,27 @@
 #include <dt-bindings/zmk/matrix_transform.h>
 #include <dt-bindings/led/led.h>
 
+// This merges to the existing tree
 / {
     chosen {
-        zephyr,display = &oled;
+        // Format is &<node label>
+
         zmk,kscan = &kscan0;
+
         zmk,matrix_transform = &default_transform;
-        zmk,underglow = &led_strip;
+
+        // Underglow is added as part of the board overlay
+
+        // Display is added as part of the `nice_view_adapter`
+
         zmk,battery = &vbatt;
     };
 
+    // `vbatt:` is the label name
+    // `vbatt` is the node name
     vbatt: vbatt {
-        compatible = "zmk,battery-nrf-vddh";
+        // Does nice!nanov2 use nRF52 VDDH pin?
+        compatible = "zmk,battery-nrf-vddh"; // Node type
         label = "VBATT";
     };
 
@@ -19,6 +29,7 @@
         compatible = "zmk,matrix-transform";
         columns = <12>;
         rows = <6>;
+// Document this orientation
 // | MX1  | MX2  | MX3  | MX4  | MX5  | MX6  |                 | MX7  | MX8  | MX9  | MX10 | MX11 | MX12 |
 // | MX13 | MX14 | MX15 | MX16 | MX17 | MX18 |                 | MX19 | MX20 | MX21 | MX22 | MX23 | MX24 |
 // | MX25 | MX26 | MX27 | MX28 | MX29 | MX30 |                 | MX31 | MX32 | MX33 | MX34 | MX35 | MX36 |
@@ -44,34 +55,8 @@ RC(3,0) RC(3,1) RC(3,2) RC(3,3) RC(3,4) RC(3,5)                   RC(3,11) RC(3,
         label = "KSCAN";
 
         diode-direction = "col2row";
-        row-gpios
-            = <&pro_micro 19 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-            , <&pro_micro 18 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-            , <&pro_micro 15 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-            , <&pro_micro 14 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-            , <&pro_micro 16 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-            , <&pro_micro 10 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-            ;
+
+        // Rows and Column Pins established per split side
 
     };
-};
-
-&pro_micro_i2c {
-	status = "okay";
-
-	oled: ssd1306@3c {
-		compatible = "solomon,ssd1306fb";
-		reg = <0x3c>;
-		label = "DISPLAY";
-		width = <128>;
-		height = <32>;
-		segment-offset = <0>;
-		page-offset = <0>;
-		display-offset = <0>;
-		multiplex-ratio = <31>;
-		segment-remap;
-		com-invdir;
-		com-sequential;
-		prechargep = <0x22>;
-	};
 };

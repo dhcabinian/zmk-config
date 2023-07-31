@@ -1,0 +1,14 @@
+file_format: "1"
+id: dactyl_5x6
+name: Dactyl 5x6
+type: shield
+url: https://github.com/dhcabinian/zmk-config
+requires: [pro_micro]
+exposes: [i2c_oled]
+features:
+  - keys
+  - display
+  - underglow
+siblings:
+  - dactyl_5x6_left
+  - dactyl_5x6_right

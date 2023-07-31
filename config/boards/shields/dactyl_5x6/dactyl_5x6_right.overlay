@@ -1,0 +1,33 @@
+#include "dactyl_5x6.dtsi"
+
+&default_transform { // The matrix transform for this board is 6 columns over because the left half is 6 columns wide according to the matrix.
+    col-offset = <6>;
+};
+
+
+&kscan0 {
+    // On Right Split:
+    //  Based on Row reasoning
+    //  Pinky column goes to closest pin (s.t. all wires are relatively the same length.)
+    //  D10 (index col) -> D20 (pinky col)
+    col-gpios
+        = <&pro_micro 10 GPIO_ACTIVE_HIGH> // Column 6 (pinky) + col-offset
+        , <&pro_micro 16 GPIO_ACTIVE_HIGH> // Column 7
+        , <&pro_micro 14 GPIO_ACTIVE_HIGH> // Column 8
+        , <&pro_micro 15 GPIO_ACTIVE_HIGH> // Column 9
+        , <&pro_micro 18 GPIO_ACTIVE_HIGH> // Column 10
+        , <&pro_micro 19 GPIO_ACTIVE_HIGH> // Column 11
+        ;
+
+    // On Right Split:
+    //  Closer to the plate = better wiring
+    //  D0 Top Row -> D9 Bottom Row (Thumb Cluster)
+    row-gpios
+        = <&pro_micro 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // Row 0 (Top/Number Row 0)
+        , <&pro_micro 5 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // Row 1
+        , <&pro_micro 6 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // Row 2
+        , <&pro_micro 7 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // Row 3
+        , <&pro_micro 8 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // Row 4
+        , <&pro_micro 9 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // Row 5 (Thumb Cluster Row 5)
+        ;
+};

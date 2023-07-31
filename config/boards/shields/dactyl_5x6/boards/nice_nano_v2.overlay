@@ -1,0 +1,57 @@
+#include <dt-bindings/led/led.h>
+
+/* What does pinctrl do? Tkaes hardware specific pins to abstraction layer: in this case node labels. */
+&pinctrl {
+		/* What is spi3? SPI is a protocol. There can be up to 4 instances apparently.*/
+		/* What does the default do? Provides board pin -> abstract protocol mapping. */
+    spi3_default: spi3_default {
+        group1 {
+						/* What is a MOSI pin? Part of the SPI protocl. */
+						/* Why pin 6? Need high frequency pin in order to not degrade wireless performance. */
+            psels = <NRF_PSEL(SPIM_MOSI, 0, 6)>;
+        };
+    };
+
+		/* What does sleep do? Allows low power mode on this pin. */
+    spi3_sleep: spi3_sleep {
+        group1 {
+            psels = <NRF_PSEL(SPIM_MOSI, 0, 6)>;
+            low-power-enable;
+        };
+    };
+};
+
+/* Why spi3 vs spi1? Thats what the docs did. Board supports up to 4 SPI interfaces apparently*/
+&spi3 {
+    compatible = "nordic,nrf-spim";
+    status = "okay";
+
+		/* What do these pinctrl do? Allows hardware to be abstracted away above. */
+    pinctrl-0 = <&spi3_default>;
+    pinctrl-1 = <&spi3_sleep>;
+    pinctrl-names = "default", "sleep";
+
+    led_strip: ws2812@0 {
+        compatible = "worldsemi,ws2812-spi";
+
+				/* What about SK6812mini? This is just a label. */
+        label = "WS2812";
+
+        /* SPI */
+        reg = <0>; /* ignored, but necessary for SPI bindings */
+        spi-max-frequency = <4000000>;
+
+        /* WS2812 */
+        chain-length = <32>; /* arbitrary; change at will. This is the number of LEDs in your chain. */
+        spi-one-frame = <0x70>;
+        spi-zero-frame = <0x40>;
+
+        color-mapping = <LED_COLOR_ID_GREEN LED_COLOR_ID_RED LED_COLOR_ID_BLUE>;
+    };
+};
+
+/ {
+    chosen {
+        zmk,underglow = &led_strip;
+    };
+};
