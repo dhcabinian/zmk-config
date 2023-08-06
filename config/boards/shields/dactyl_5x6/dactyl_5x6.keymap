@@ -25,6 +25,16 @@ nice_view_spi: &spi0 {
 &sl {
     release-after-ms = <1000>;
 };
+/* https://zmk.dev/docs/behaviors/hold-tap */
+&mt {
+    tapping-term-ms = <201>;
+    flavor = "tap-preferred";
+};
+/* https://zmk.dev/docs/behaviors/sticky-key */
+&sk {
+    release-after-ms = <2000>;
+    quick-release;
+};
 
 / {
     // Activate ADJUST layer by pressing raise and lower
@@ -33,6 +43,40 @@ nice_view_spi: &spi0 {
         adjust_layer {
             if-layers = <LWR RSE>;
             then-layer = <ADJUST>;
+        };
+    };
+
+    combos {
+        compatible = "zmk,combos";
+    };
+
+    behaviors {
+        hl_l: homerow_layers_left {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HOMEROW_LAYERS_L";
+            #binding-cells = <2>;
+            tapping-term-ms = <220>;
+            quick-tap-ms = <250>;
+            flavor = "tap-preferred";
+            bindings = <&mo>, <&kp>;
+        };
+        hl_r: homerow_layers_right {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HOMEROW_LAYERS_R";
+            #binding-cells = <2>;
+            tapping-term-ms = <220>;
+            quick-tap-ms = <250>;
+            flavor = "tap-preferred";
+            bindings = <&mo>, <&kp>;
+        };
+        td: tapdance {
+            compatible = "zmk,behavior-hold-tap";
+            label = "TAPDANCE";
+            #binding-cells = <2>;
+            tapping-term-ms = <190>;
+            quick-tap-ms = <250>;
+            flavor = "tap-preferred";
+            bindings = <&kp>, <&kp>;
         };
     };
 
@@ -48,7 +92,7 @@ nice_view_spi: &spi0 {
                                          &tog LWR          &tog RSE                                                                        &kp LBKT        &kp RBKT
                                                            &kp LSHFT    &kp SPACE                                          &kp RET         &kp BSPC
                                                                         &kp LCMD     &kp ESC               &kp UP          &kp RIGHT
-                                                                        &sl LWR      &kp LALT              &kp LEFT        &kp DOWN
+                                                                        &key_repeat  &kp LALT              &kp LEFT        &kp DOWN
             >;
         };
 
@@ -56,7 +100,7 @@ nice_view_spi: &spi0 {
             bindings = <
                 &kp F12      &kp F1       &kp F2            &kp F3       &kp F4       &kp F5                &kp F6          &kp F7          &kp F8          &kp F9          &kp F10    &kp F11
                 &trans       &none        &none             &none        &none        &none                 &none           &none           &none           &none           &none      &none
-                &trans       &none        &none             &none        &none        &none                 &kp LEFT        &kp DOWN        &kp UP          &kp RIGHT       &none      &none
+                &trans       &none        &none             &kp DEL      &none        &none                 &kp LEFT        &kp DOWN        &kp UP          &kp RIGHT       &none      &none
                 &trans       &kp K_UNDO   &kp K_CUT         &kp K_COPY   &kp K_PASTE  &none                 &none           &none           &none           &none           &none      &none
                                           &trans            &trans                                                                          &none           &none
                                                             &trans       &trans                                             &trans          &trans
