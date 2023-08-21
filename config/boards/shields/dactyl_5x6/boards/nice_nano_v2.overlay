@@ -42,7 +42,7 @@
         spi-max-frequency = <4000000>;
 
         /* WS2812 */
-        chain-length = <32>; /* arbitrary; change at will. This is the number of LEDs in your chain. */
+        chain-length = <32>; /* arbitrary; change at will. This is the number of LEDs in your chain (per-half). This will get overriden by the default overlay then by the keymap */
         spi-one-frame = <0x70>;
         spi-zero-frame = <0x40>;
 

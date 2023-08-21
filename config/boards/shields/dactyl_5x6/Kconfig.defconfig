@@ -21,3 +21,10 @@ if SHIELD_DACTYL_5X6_LEFT || SHIELD_DACTYL_5X6_RIGHT
         default y
 
 endif
+
+
+config PWM
+    default y
+
+config LED_PWM
+    default y

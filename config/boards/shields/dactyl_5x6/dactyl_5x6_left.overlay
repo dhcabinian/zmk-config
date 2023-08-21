@@ -1,28 +1,35 @@
 #include "dactyl_5x6.dtsi" // Notice that the main dtsi files are included in the overlay.
 
+// Other Pins assigned:
+// SCK == D3 (NRF20)
+// MOSI == D2 (NRF17)
+// CS == D4
+// MISO == Unattached (NRF25 / AC21) has no output on NiceNanov2
+// RGB DIN == D1 (P0.06)
+
 &kscan0 {
     // On Left Split:
     //  Based on Row reasoning
     //  Pinky column goes to closest pin (s.t. all wires are relatively the same length.)
     //  D9 (index col) -> D0 (pinky col)
     col-gpios
-        = <&pro_micro 0 GPIO_ACTIVE_HIGH> // Column 0 (pinky)
-        , <&pro_micro 5 GPIO_ACTIVE_HIGH> // Column 1
-        , <&pro_micro 6 GPIO_ACTIVE_HIGH> // Column 2
-        , <&pro_micro 7 GPIO_ACTIVE_HIGH> // Column 3
-        , <&pro_micro 8 GPIO_ACTIVE_HIGH> // Column 4
-        , <&pro_micro 9 GPIO_ACTIVE_HIGH> // Column 5
+        = <&pro_micro 19 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // Column 0 (pinky)
+        , <&pro_micro 18 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // Column 1
+        , <&pro_micro 15 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // Column 2
+        , <&pro_micro 14 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // Column 3
+        , <&pro_micro 16 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // Column 4
+        , <&pro_micro 10 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // Column 5
         ;
 
     // On Left Split:
     //  Closer to the plate = better wiring
     //  Top Row @ D20 -> Thumb Cluster @D10
     row-gpios
-        = <&pro_micro 19 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // Row 0 (Top/Number Row 0)
-        , <&pro_micro 18 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // Row 1
-        , <&pro_micro 15 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // Row 2
-        , <&pro_micro 14 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // Row 3
-        , <&pro_micro 16 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // Row 4
-        , <&pro_micro 10 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // Row 5 (Thumb Cluster Row 5)
+        = <&pro_micro 9 GPIO_ACTIVE_HIGH> // Row 0 (Top/Number Row 0)
+        , <&pro_micro 8 GPIO_ACTIVE_HIGH> // Row 1
+        , <&pro_micro 7 GPIO_ACTIVE_HIGH> // Row 2
+        , <&pro_micro 6 GPIO_ACTIVE_HIGH> // Row 3
+        , <&pro_micro 5 GPIO_ACTIVE_HIGH> // Row 4
+        , <&pro_micro 0 GPIO_ACTIVE_HIGH> // Row 5 (Thumb Cluster Row 5)
         ;
 };
