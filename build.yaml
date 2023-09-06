@@ -20,3 +20,5 @@ include:
     shield: dactyl_5x6_left nice_view_adapter nice_view
   - board: nice_nano_v2
     shield: dactyl_5x6_right nice_view_adapter nice_view
+  - board: nice_nano_v2
+    shield: settings_reset
