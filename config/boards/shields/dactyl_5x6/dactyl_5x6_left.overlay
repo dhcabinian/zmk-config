@@ -8,10 +8,6 @@
 // RGB DIN == D1 (P0.06)
 
 &kscan0 {
-    // On Left Split:
-    //  Based on Row reasoning
-    //  Pinky column goes to closest pin (s.t. all wires are relatively the same length.)
-    //  D9 (index col) -> D0 (pinky col)
     col-gpios
         = <&pro_micro 19 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // Column 0 (pinky)
         , <&pro_micro 18 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // Column 1
@@ -21,9 +17,6 @@
         , <&pro_micro 10 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // Column 5
         ;
 
-    // On Left Split:
-    //  Closer to the plate = better wiring
-    //  Top Row @ D20 -> Thumb Cluster @D10
     row-gpios
         = <&pro_micro 9 GPIO_ACTIVE_HIGH> // Row 0 (Top/Number Row 0)
         , <&pro_micro 8 GPIO_ACTIVE_HIGH> // Row 1
