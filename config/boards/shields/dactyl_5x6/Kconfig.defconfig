@@ -8,13 +8,6 @@ if SHIELD_DACTYL_5X6_LEFT
 
 endif
 
-if SHIELD_DACTY_5X6L_RIGHT
-
-    config ZMK_KEYBOARD_NAME
-        default "Dactyl Right"
-
-endif
-
 if SHIELD_DACTYL_5X6_LEFT || SHIELD_DACTYL_5X6_RIGHT
 
     config ZMK_SPLIT
