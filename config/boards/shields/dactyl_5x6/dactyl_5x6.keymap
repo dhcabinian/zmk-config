@@ -79,6 +79,17 @@ nice_view_spi: &spi0 { cs-gpios = <&pro_micro 4 GPIO_ACTIVE_HIGH>; };
             quick-tap-ms = <0>;
             bindings = <&caps_word>, <&kp>;
         };
+
+        // For using with medium use keys on hold
+        // hold-tap-balanced-medium
+        htbm: hold_tap_balanced_med {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            tapping-term-ms = <200>;
+            quick-tap-ms = <0>;
+            bindings = <&kp>, <&kp>;
+        };
     };
 
     keymap {
@@ -87,12 +98,12 @@ nice_view_spi: &spi0 { cs-gpios = <&pro_micro 4 GPIO_ACTIVE_HIGH>; };
         default_layer {
             label = "ALPHA"; // Adds label to display
             bindings = <
-&mt F12 GRAVE            &mt F1 NUMBER_1  &mt F2 NUMBER_2   &mt F3 NUMBER_3    &mt F4 NUMBER_4  &mt F5 NUMBER_5  &mt F6 NUMBER_6  &mt F7 NUMBER_7  &mt F8 NUMBER_8  &mt F9 NUMBER_9  &mt F10 NUMBER_0  &mt F11 EQUAL
+&kp GRAVE            &kp NUMBER_1  &kp NUMBER_2   &kp NUMBER_3    &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6  &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &kp NUMBER_0  &kp EQUAL
 &kp TAB                  &kp Q            &kp W             &kp E              &kp R            &kp T            &kp Y            &kp U            &kp I            &kp O            &kp P             &kp MINUS
 &hold_caps_word 0 LSHFT  &kp A            &kp S             &kp D              &kp F            &kp G            &kp H            &kp J            &kp K            &kp L            &kp SEMI          &kp SQT
 &kp LCTRL                &kp Z            &kp X             &kp C              &kp V            &kp B            &kp N            &kp M            &kp COMMA        &kp DOT          &kp FSLH          &kp BSLH
-                                          &mt HOME PAGE_UP  &mt END PAGE_DOWN                                                                      &kp LBKT         &kp RBKT
-                                                                               &kp LSHFT        &kp SPACE        &kp RET          &kp BSPC
+                                          &htbm HOME PAGE_UP  &htbm END PAGE_DOWN                                                                      &kp LBKT         &kp RBKT
+                                                                               &sk LSHFT        &kp SPACE        &kp RET          &kp BSPC
                                                                                &kp LGUI         &kp LALT         &kp UP_ARROW     &kp RIGHT_ARROW
                                                                                &kp ESC          &tog SYS         &kp LEFT_ARROW   &kp DOWN_ARROW
             >;
