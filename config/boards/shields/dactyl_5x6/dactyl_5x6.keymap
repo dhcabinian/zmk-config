@@ -103,7 +103,7 @@ nice_view_spi: &spi0 { cs-gpios = <&pro_micro 4 GPIO_ACTIVE_HIGH>; };
 &sk LSHFT                &kp A            &kp S             &kp D              &kp F            &kp G            &kp H            &kp J            &kp K            &kp L            &kp SEMI          &kp SQT
 &kp LCTRL                &kp Z            &kp X             &kp C              &kp V            &kp B            &kp N            &kp M            &kp COMMA        &kp DOT          &kp FSLH          &kp BSLH
                                           &htbm HOME PAGE_UP  &htbm END PAGE_DOWN                                                                      &kp LBKT         &kp RBKT
-                                                                               &sk LSHFT        &kp SPACE        &kp RET          &kp BSPC
+                                                                               &kp LSHFT        &kp SPACE        &kp RET          &kp BSPC
                                                                                &kp LGUI         &kp LALT         &kp UP_ARROW     &kp RIGHT_ARROW
                                                                                &tog SYS         &kp ESC          &kp LEFT_ARROW   &kp DOWN_ARROW
             >;
